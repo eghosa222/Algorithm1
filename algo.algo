@@ -1,0 +1,49 @@
+function analyzeSentence(sentence) {
+    // Initialize counters
+    let length = 0;
+    let wordCount = 0;
+    let vowelCount = 0;
+
+    // List of vowels
+    const vowels = 'aeiouAEIOU';
+    
+    // Variable to track if we are in a word
+    let inWord = false;
+
+    // Iterate over each character in the sentence
+    for (let char of sentence) {
+        // Increment length counter
+        length++;
+
+        // Check if the character is a vowel
+        if (vowels.includes(char)) {
+            vowelCount++;
+        }
+
+        // Check if the character is a space
+        if (char === ' ') {
+            // If we were in a word, this marks the end of a word
+            if (inWord) {
+                wordCount++;
+                inWord = false;
+            }
+        } else {
+            // If the character is not a space, we are in a word
+            inWord = true;
+        }
+    }
+
+    // Account for the last word if the sentence does not end with a space
+    if (inWord) {
+        wordCount++;
+    }
+
+    // The sentence length includes the period at the end
+    console.log(`Length of the sentence: ${length}`);
+    console.log(`Number of words in the sentence: ${wordCount}`);
+    console.log(`Number of vowels in the sentence: ${vowelCount}`);
+}
+
+// Example usage
+const sentence = "This is an example sentence.";
+analyzeSentence(sentence);
